@@ -43,9 +43,10 @@ This project demonstrates a full-stack application built using:
 - View medication list
 
 ### Refill Tracking
--  
--
--
+- Add Refill record with name, refill date, quantity and pharmacy
+- Display Record page.
+- Edit records if there is any changes.
+- Delete records no longer needed
 
 ## Screenshots
 

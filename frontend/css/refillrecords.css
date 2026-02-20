@@ -1,0 +1,126 @@
+/* Page title */
+.page h1 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Card title  */
+.card h2 {
+    font-family: var(--font-heading);
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+}
+
+/* Form layout */
+.card input {
+    font-family: var(--font-body);
+    font-size: 15px;
+    min-width: 180px;
+    margin-bottom: 8px;
+}
+
+.card input + input {
+    margin-left: 6px;
+}
+
+#saveBtn, #cancelBtn {
+    margin-left: 8px;
+    padding: 10px 18px;
+    font-weight: 500;
+}
+
+#cancelBtn {
+    background: #f4f6f8;
+    color: #6b7f94;
+}
+
+#cancelBtn:hover {
+    background: #e9ecef;
+}
+
+/* Medication table */
+.med-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: var(--font-body);
+}
+
+.med-table thead {
+    background: #f3f7fb;
+}
+
+.med-table th {
+    text-align: left;
+    padding: 12px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    border-bottom: 2px solid var(--border-soft);
+    font-family: var(--font-heading);
+}
+
+.med-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.med-table tbody tr:hover {
+    background: #f9fcff;
+}
+
+.med-table button {
+    margin-right: 6px;
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+.med-table td strong {
+    color: var(--primary-dark);
+}
+
+/* Actions buttons styling matching medications page */
+.delete-btn {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+    background: #fecaca;
+}
+
+.edit-btn {
+    background: #e6eef6;
+    color: var(--primary-dark);
+}
+
+.edit-btn:hover {
+    background: #d4e3f2;
+}
+
+/* Empty state */
+.med-table tbody:empty::before {
+    content: "No refill records added yet.";
+    display: block;
+    padding: 16px;
+    margin-top: 10px;
+    background: #f5f8fb;
+    border: 1px dashed var(--border-soft);
+    border-radius: 10px;
+    color: #6b7f94;
+    font-style: italic;
+}
+
+/* Pagination visibility */
+#pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+#pagination button {
+    padding: 6px 12px;
+    font-size: 14px;
+}
