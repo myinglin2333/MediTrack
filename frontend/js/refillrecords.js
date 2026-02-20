@@ -24,7 +24,7 @@ async function loadRefills(page = 1) {
             const row = document.createElement("tr");
 
             row.innerHTML = `
-        <td><strong>${r.name}</strong></td>
+        <td><strong>${r.medicationName}</strong></td>
         <td>${r.refillDate}</td>
         <td>${r.quantity}</td>
         <td>${r.pharmacy}</td>

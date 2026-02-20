@@ -19,7 +19,7 @@
 
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="medications.html">Manage Medications</a>
+            <a href="medications.html" class="active">Manage Medications</a>
             <a href="refillrecords.html">Refill Records</a>
         </div>
     </div>
@@ -28,11 +28,13 @@
         <h1>MediTrack - Medications</h1>
 
         <section class="card">
-            <h2>Add Medication</h2>
+            <h2 id="formTitle">Add Medication</h2>
             <input id="name" placeholder="Name">
             <input id="dosage" placeholder="Dosage">
             <input id="schedule" placeholder="Schedule">
-            <input id="notes" placeholder="Notes">
+            <input id="notes" placeholder="Notes (Optional)">
+
+            <button id="cancelBtn" style="display:none;">Cancel</button>
             <button id="addBtn">Add</button>
         </section>
 
@@ -53,6 +55,7 @@
                 <tbody id="list"></tbody>
             </table>
             <div id="pagination"></div>
+            <div id="emptyMessage" style="display:none; padding:15px;"></div>
         </section>
 
         <footer>
