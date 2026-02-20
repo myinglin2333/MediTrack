@@ -4,96 +4,94 @@ import { connectDatabase, getDb } from "./modules/mongodb-connect.js";
 dotenv.config();
 
 function randomFrom(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
 function randomDate(start, end) {
-    return new Date(
-        start.getTime() + Math.random() * (end.getTime() - start.getTime())
-    );
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime()),
+  );
 }
 
 async function seed() {
-    await connectDatabase();
-    const db = getDb();
+  await connectDatabase();
+  const db = getDb();
 
-    console.log("Seeding database...");
+  console.log("Seeding database...");
 
-    /* Medication data */
-    const names = [
-        "Vitamin D",
-        "Ibuprofen",
-        "Aspirin",
-        "Metformin",
-        "Antibiotic",
-        "Omega 3",
-        "Calcium",
-        "Melatonin",
-        "Probiotic",
-        "Cough Syrup"
-    ];
-    
-    const schedules = ["Morning", "Noon", "Evening", "Night"];
-    const notes = [
-        "Take after meal",
-        "Before sleep",
-        "Drink water",
-        "Doctor recommended",
-        "Short course",
-        "",
-        "",
-        ""
-    ];
-  
-    const medications = [];
+  /* Medication data */
+  const names = [
+    "Vitamin D",
+    "Ibuprofen",
+    "Aspirin",
+    "Metformin",
+    "Antibiotic",
+    "Omega 3",
+    "Calcium",
+    "Melatonin",
+    "Probiotic",
+    "Cough Syrup",
+  ];
 
-    for (let i = 0; i < 1000; i++) {
-        const taken = Math.random() > 0.5;
+  const schedules = ["Morning", "Noon", "Evening", "Night"];
+  const notes = [
+    "Take after meal",
+    "Before sleep",
+    "Drink water",
+    "Doctor recommended",
+    "Short course",
+    "",
+    "",
+    "",
+  ];
 
-        medications.push({
-            name: randomFrom(names),
-            dosage: `${Math.ceil(Math.random() * 3)} pill`,
-            schedule: randomFrom(schedules),
-            notes: randomFrom(notes),
-            takenToday: taken,
-            takenAt: taken
-                ? randomDate(new Date(2025, 0, 1), new Date())
-                : null
-        });
-    }
-    
-    await db.collection("medications").deleteMany({});
-    await db.collection("medications").insertMany(medications);
+  const medications = [];
 
-    console.log("Inserted medications");
+  for (let i = 0; i < 1000; i++) {
+    const taken = Math.random() > 0.5;
 
-    /* Refill data */
-    const pharmacies = [
-        "CVS",
-        "Walgreens",
-        "Rite Aid",
-        "Hospital Pharmacy",
-        "Local Pharmacy"
-    ];
+    medications.push({
+      name: randomFrom(names),
+      dosage: `${Math.ceil(Math.random() * 3)} pill`,
+      schedule: randomFrom(schedules),
+      notes: randomFrom(notes),
+      takenToday: taken,
+      takenAt: taken ? randomDate(new Date(2025, 0, 1), new Date()) : null,
+    });
+  }
 
-    const refills = [];
+  await db.collection("medications").deleteMany({});
+  await db.collection("medications").insertMany(medications);
 
-    for (let i = 0; i < 1000; i++) {
-        refills.push({
-        medicationName: randomFrom(names),
-        quantity: Math.ceil(Math.random() * 90),
-        pharmacy: randomFrom(pharmacies),
-        refillDate: randomDate(new Date(2025, 0, 1), new Date())
-        });
-    }
+  console.log("Inserted medications");
 
-    await db.collection("refills").deleteMany({});
-    await db.collection("refills").insertMany(refills);
+  /* Refill data */
+  const pharmacies = [
+    "CVS",
+    "Walgreens",
+    "Rite Aid",
+    "Hospital Pharmacy",
+    "Local Pharmacy",
+  ];
 
-    console.log("Inserted refill records");
+  const refills = [];
 
-    console.log("Seed complete");
-    process.exit();
+  for (let i = 0; i < 1000; i++) {
+    refills.push({
+      name: randomFrom(names),
+      quantity: Math.ceil(Math.random() * 90),
+      pharmacy: randomFrom(pharmacies),
+      refillDate: randomDate(new Date(2025, 0, 1), new Date()),
+    });
+  }
+
+  await db.collection("refills").deleteMany({});
+  await db.collection("refills").insertMany(refills);
+
+  console.log("Inserted refill records");
+
+  console.log("Seed complete");
+  process.exit();
 }
 
 seed();

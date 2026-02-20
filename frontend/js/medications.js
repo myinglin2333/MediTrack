@@ -16,7 +16,7 @@ async function loadMedications(page = 1) {
 
   list.innerHTML = "";
 
-  meds.forEach(m => {
+  meds.forEach((m) => {
     const row = document.createElement("tr");
 
     row.innerHTML = `
@@ -41,7 +41,8 @@ async function loadMedications(page = 1) {
     `;
 
     row.querySelector(".delete-btn").onclick = () => deleteMed(m._id);
-    row.querySelector(".taken-btn").onclick = () => markTaken(m._id, m.takenToday);
+    row.querySelector(".taken-btn").onclick = () =>
+      markTaken(m._id, m.takenToday);
 
     list.appendChild(row);
   });
@@ -80,8 +81,8 @@ async function addMedication() {
       name: document.getElementById("name").value,
       dosage: document.getElementById("dosage").value,
       schedule: document.getElementById("schedule").value,
-      notes: document.getElementById("notes").value
-    })
+      notes: document.getElementById("notes").value,
+    }),
   });
 
   loadMedications(currentPage);
@@ -93,12 +94,12 @@ async function deleteMed(id) {
 }
 
 async function markTaken(id, currentStatus) {
-  await fetch(`${API}/${id}/taken`, { 
+  await fetch(`${API}/${id}/taken`, {
     method: "PATCH",
-    headers: {"Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      takenToday: !currentStatus
-    })
+      takenToday: !currentStatus,
+    }),
   });
 
   loadMedications(currentPage);

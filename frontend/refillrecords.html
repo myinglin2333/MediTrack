@@ -1,71 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>MediTrack - Refill Records</title>
+  <meta charset="UTF-8" />
+  <title>MediTrack - Refill Records</title>
 
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/refillrecords.css">
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/refillrecords.css" />
 </head>
 
 <body>
-
-    <!-- Nav Bar -->
-    <div class="topnav">
-        <div class="nav-title">
-            <span class="pill-icon"></span>
-            MediTrack
-        </div>
-
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="medications.html">Manage Medications</a>
-            <a href="refillrecords.html">Refill Records</a>
-        </div>
+  <!-- Nav Bar -->
+  <nav class="topnav">
+    <div class="nav-title">
+      <span class="pill-icon"></span>
+      MediTrack
     </div>
 
-    <div class="page">
-        <h1>MediTrack - Refill Records</h1>
-
-        <section class="card">
-            <h2 id="formTitle">Add Refill Record</h2>
-            <div id="refillForm">
-                <input id="name" placeholder="Medication Name">
-                <input id="refillDate" type="date">
-                <input id="quantity" placeholder="Quantity (e.g. 30 pills)">
-                <input id="pharmacy" placeholder="Pharmacy">
-                <input id="notes" placeholder="Notes (Optional)">
-                <button id="saveBtn">Add</button>
-                <button id="cancelBtn" style="display: none;">Cancel</button>
-            </div>
-        </section>
-
-        <section class="card">
-            <h2>Refill History</h2>
-            <table class="med-table">
-                <thead>
-                    <tr>
-                        <th>Medication</th>
-                        <th>Refill Date</th>
-                        <th>Quantity</th>
-                        <th>Pharmacy</th>
-                        <th>Notes</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="list"></tbody>
-            </table>
-            <div id="pagination"></div>
-        </section>
-
-        <footer>
-            <p>MediTrack &copy; 2026 — Helly Niteshbhai Diyora &amp; Lili Mei Ye</p>
-        </footer>
-
-        <script type="module" src="js/refillrecords.js"></script>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="medications.html">Manage Medications</a>
+      <a href="refillrecords.html">Refill Records</a>
     </div>
+  </nav>
 
+  <div class="page">
+    <h1>MediTrack - Refill Records</h1>
+
+    <section class="card">
+      <h2 id="formTitle">Add Refill Record</h2>
+      <div id="refillForm">
+        <input id="name" placeholder="Medication Name" />
+        <input id="refillDate" type="date" />
+        <input id="quantity" placeholder="Quantity (e.g. 30 pills)" />
+        <input id="pharmacy" placeholder="Pharmacy" />
+        <input id="notes" placeholder="Notes (Optional)" />
+        <button id="saveBtn">Add</button>
+        <button id="cancelBtn" style="display: none">Cancel</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Refill History</h2>
+      <table class="med-table">
+        <thead>
+          <tr>
+            <th>Medication</th>
+            <th>Refill Date</th>
+            <th>Quantity</th>
+            <th>Pharmacy</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="list"></tbody>
+      </table>
+      <div id="pagination"></div>
+    </section>
+
+    <footer>
+      <p>MediTrack &copy; 2026 — Helly Niteshbhai Diyora &amp; Lili Mei Ye</p>
+    </footer>
+
+    <script type="module" src="js/refillrecords.js"></script>
+  </div>
 </body>
 
 </html>

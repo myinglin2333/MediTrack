@@ -9,23 +9,28 @@ let currentPage = 1;
 let editingId = null;
 
 async function loadRefills(page = 1) {
-    currentPage = page;
+  currentPage = page;
 
-    try {
-        const res = await fetch(`${API}?page=${page}&limit=10`);
-        const result = await res.json();
+  try {
+    const res = await fetch(`${API}?page=${page}&limit=10`);
+    const result = await res.json();
 
-        const refills = result.data;
-        const totalPages = result.totalPages;
+    const refills = result.data;
+    const totalPages = result.totalPages;
 
-        list.innerHTML = "";
+    list.innerHTML = "";
 
-        refills.forEach(r => {
-            const row = document.createElement("tr");
+    refills.forEach((r) => {
+      const row = document.createElement("tr");
 
-            row.innerHTML = `
+      const displayDate =
+        r.refillDate && r.refillDate.includes("T")
+          ? new Date(r.refillDate).toLocaleDateString()
+          : r.refillDate;
+
+      row.innerHTML = `
         <td><strong>${r.name}</strong></td>
-        <td>${r.refillDate}</td>
+        <td>${displayDate}</td>
         <td>${r.quantity}</td>
         <td>${r.pharmacy}</td>
         <td>${r.notes || "-"}</td>
@@ -35,109 +40,109 @@ async function loadRefills(page = 1) {
         </td>
       `;
 
-            row.querySelector(".edit-btn").onclick = () => startEdit(r);
-            row.querySelector(".delete-btn").onclick = () => deleteRefill(r._id);
+      row.querySelector(".edit-btn").onclick = () => startEdit(r);
+      row.querySelector(".delete-btn").onclick = () => deleteRefill(r._id);
 
-            list.appendChild(row);
-        });
+      list.appendChild(row);
+    });
 
-        renderPagination(page, totalPages);
-    } catch (err) {
-        console.error("Error loading refills:", err);
-    }
+    renderPagination(page, totalPages);
+  } catch (err) {
+    console.error("Error loading refills:", err);
+  }
 }
 
 function renderPagination(page, totalPages) {
-    const container = document.getElementById("pagination");
-    container.innerHTML = "";
+  const container = document.getElementById("pagination");
+  container.innerHTML = "";
 
-    if (totalPages <= 1) return;
+  if (totalPages <= 1) return;
 
-    if (page > 1) {
-        const prev = document.createElement("button");
-        prev.textContent = "Prev";
-        prev.onclick = () => loadRefills(page - 1);
-        container.appendChild(prev);
-    }
+  if (page > 1) {
+    const prev = document.createElement("button");
+    prev.textContent = "Prev";
+    prev.onclick = () => loadRefills(page - 1);
+    container.appendChild(prev);
+  }
 
-    const label = document.createElement("span");
-    label.textContent = ` Page ${page} / ${totalPages} `;
-    container.appendChild(label);
+  const label = document.createElement("span");
+  label.textContent = ` Page ${page} / ${totalPages} `;
+  container.appendChild(label);
 
-    if (page < totalPages) {
-        const next = document.createElement("button");
-        next.textContent = "Next";
-        next.onclick = () => loadRefills(page + 1);
-        container.appendChild(next);
-    }
+  if (page < totalPages) {
+    const next = document.createElement("button");
+    next.textContent = "Next";
+    next.onclick = () => loadRefills(page + 1);
+    container.appendChild(next);
+  }
 }
 
 async function saveRefill() {
-    const data = {
-        name: document.getElementById("name").value,
-        refillDate: document.getElementById("refillDate").value,
-        quantity: document.getElementById("quantity").value,
-        pharmacy: document.getElementById("pharmacy").value,
-        notes: document.getElementById("notes").value
-    };
+  const data = {
+    name: document.getElementById("name").value,
+    refillDate: document.getElementById("refillDate").value,
+    quantity: document.getElementById("quantity").value,
+    pharmacy: document.getElementById("pharmacy").value,
+    notes: document.getElementById("notes").value,
+  };
 
-    if (!data.name || !data.refillDate) {
-        alert("Please enter at least the medication name and refill date.");
-        return;
-    }
+  if (!data.name || !data.refillDate) {
+    alert("Please enter at least the medication name and refill date.");
+    return;
+  }
 
-    const method = editingId ? "PATCH" : "POST";
-    const url = editingId ? `${API}/${editingId}` : API;
+  const method = editingId ? "PATCH" : "POST";
+  const url = editingId ? `${API}/${editingId}` : API;
 
-    try {
-        await fetch(url, {
-            method: method,
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
+  try {
+    await fetch(url, {
+      method: method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
 
-        resetForm();
-        loadRefills(currentPage);
-    } catch (err) {
-        console.error("Error saving refill:", err);
-    }
+    resetForm();
+    loadRefills(currentPage);
+  } catch (err) {
+    console.error("Error saving refill:", err);
+  }
 }
 
 function startEdit(refill) {
-    editingId = refill._id;
-    document.getElementById("name").value = refill.name;
-    document.getElementById("refillDate").value = refill.refillDate;
-    document.getElementById("quantity").value = refill.quantity;
-    document.getElementById("pharmacy").value = refill.pharmacy;
-    document.getElementById("notes").value = refill.notes || "";
+  editingId = refill._id;
+  document.getElementById("name").value = refill.name;
+  document.getElementById("refillDate").value = refill.refillDate;
+  document.getElementById("quantity").value = refill.quantity;
+  document.getElementById("pharmacy").value = refill.pharmacy;
+  document.getElementById("notes").value = refill.notes || "";
 
-    formTitle.textContent = "Edit Refill Record";
-    saveBtn.textContent = "Update";
-    cancelBtn.style.display = "inline-block";
+  formTitle.textContent = "Edit Refill Record";
+  saveBtn.textContent = "Update";
+  cancelBtn.style.display = "inline-block";
 }
 
 function resetForm() {
-    editingId = null;
-    document.getElementById("name").value = "";
-    document.getElementById("refillDate").value = "";
-    document.getElementById("quantity").value = "";
-    document.getElementById("pharmacy").value = "";
-    document.getElementById("notes").value = "";
+  editingId = null;
+  document.getElementById("name").value = "";
+  document.getElementById("refillDate").value = "";
+  document.getElementById("quantity").value = "";
+  document.getElementById("pharmacy").value = "";
+  document.getElementById("notes").value = "";
 
-    formTitle.textContent = "Add Refill Record";
-    saveBtn.textContent = "Add";
-    cancelBtn.style.display = "none";
+  formTitle.textContent = "Add Refill Record";
+  saveBtn.textContent = "Add";
+  cancelBtn.style.display = "none";
 }
 
 async function deleteRefill(id) {
-    if (confirm("Are you sure you want to delete this record?")) {
-        try {
-            await fetch(`${API}/${id}`, { method: "DELETE" });
-            loadRefills(currentPage);
-        } catch (err) {
-            console.error("Error deleting refill:", err);
-        }
+  if (confirm("Are you sure you want to delete this record?")) {
+    try {
+      await fetch(`${API}/${id}`, { method: "DELETE" });
+      loadRefills(currentPage);
+    } catch (err) {
+      console.error("Error deleting refill:", err);
     }
+  }
 }
 
 saveBtn.addEventListener("click", saveRefill);
