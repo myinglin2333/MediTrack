@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MediTrack - Medications</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/medications.css">
+</head>
+
+<body>
+
+    <!-- Nav Bar -->
+    <div class="topnav">
+        <div class="nav-title">
+            <span class="pill-icon"></span>
+            MediTrack
+        </div>
+
+        <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="medications.html">Manage Medications</a>
+        <a href="refillsrecords.html">Refill Records</a>
+        </div>
+    </div>
+
+    <div class="page">
+        <h1>MediTrack - Medications</h1>
+
+    <section class="card">
+        <h2>Add Medication</h2>
+        <input id="name" placeholder="Name">
+        <input id="dosage" placeholder="Dosage">
+        <input id="schedule" placeholder="Schedule">
+        <input id="notes" placeholder="Notes">
+        <button id="addBtn">Add</button>
+    </section>
+
+    <section class="card">
+        <h2>Medication List</h2>
+        <table class="med-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Dosage</th>
+                    <th>Schedule</th>
+                    <th>Notes</th>
+                    <th>Date Taken</th>
+                    <th>Taken</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="list"></tbody>
+        </table>
+        <div id="pagination"></div>
+    </section>
+
+    <footer>
+        <p>MediTrack &copy; 2026 — Helly Niteshbhai Diyora &amp; Lili Mei Ye</p>
+    </footer>
+
+    <script type="module" src="js/medications.js"></script>
+    </div>
+
+</body>
+
+</html>

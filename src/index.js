@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import { connectDatabase } from "./modules/mongodb-connect.js";
 import medicationsRouter from "./routes/medicationsRouter.js";
 import refillsRouter from "./routes/refillsRouter.js";
 
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 const PORT = 3000;
+await connectDatabase();
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

@@ -1,0 +1,28 @@
+main {
+  max-width: 900px;
+}
+
+/* ---------- HOME CARD TEXT STYLING ---------- */
+
+.card h2 {
+  color: var(--primary-dark);
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.card li {
+  color: #44596d;
+  margin-bottom: 6px;
+}
+
+.card strong {
+  color: var(--primary-dark);
+}
+
+.card em {
+  color: #6b7f94;
+}
