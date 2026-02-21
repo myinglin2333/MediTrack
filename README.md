@@ -37,14 +37,15 @@ This project demonstrates a full-stack application built using:
 
 ## Features
 ### Medication Management
-- Add medications with dosage and schedule
-- Mark medications as taken or not taken status
+- Add medications with dosage, schedule and notes
+- Mark medications as taken / undo taken
 - Delete medications
-- View medication list
+- Edit exisiting medications
+- View taken date
 
 ### Refill Tracking
--  
--
+-  Add refill entries with medication name, quantity, pharmacy, and date
+- View refill history in table format
 -
 
 ## Screenshots
@@ -64,6 +65,11 @@ This project demonstrates a full-stack application built using:
 
 
 ## How to Run the Project
+
+
+
+## Work Distribution
+
 
 
 
