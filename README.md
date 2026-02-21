@@ -51,7 +51,7 @@ This project demonstrates a full-stack application built using:
 ## Screenshots
 
 ### Homepage
-![Home Page](screenshots/homepage.png)
+![Home Page](screenshots/Homepage.png)
 
 ### Medications page
 ![Home Page](screenshots/Medication-page.png)
