@@ -2,21 +2,35 @@ const API = "http://localhost:3000/api/medications";
 
 const list = document.getElementById("list");
 const addBtn = document.getElementById("addBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+const formTitle = document.getElementById("formTitle");
+const emptyMessage = document.getElementById("emptyMessage");
 
+let editingId = null;
 let currentPage = 1;
 
+/* LOAD TABLE */
+
 async function loadMedications(page = 1) {
+
   currentPage = page;
 
   const res = await fetch(`${API}?page=${page}&limit=10`);
   const result = await res.json();
 
-  const meds = result.data;
-  const totalPages = result.totalPages;
+  const meds = result.data || result;
 
   list.innerHTML = "";
 
-  meds.forEach((m) => {
+  if (!meds.length) {
+    emptyMessage.style.display = "block";
+    emptyMessage.textContent = "No medications added yet.";
+  } else {
+    emptyMessage.style.display = "none";
+  }
+
+  meds.forEach(m => {
+
     const row = document.createElement("tr");
 
     row.innerHTML = `
@@ -24,7 +38,12 @@ async function loadMedications(page = 1) {
       <td>${m.dosage}</td>
       <td>${m.schedule}</td>
       <td>${m.notes || "-"}</td>
-      <td>${m.takenAt ? new Date(m.takenAt).toLocaleDateString() : "-"}</td>
+
+      <td>
+        ${m.takenAt 
+          ? new Date(m.takenAt).toLocaleDateString() 
+          : "-"}
+      </td>
 
       <td>
         <span class="badge ${m.takenToday ? "badge-yes" : "badge-no"}">
@@ -33,6 +52,7 @@ async function loadMedications(page = 1) {
       </td>
 
       <td>
+        <button class="edit-btn">Edit</button>
         <button class="delete-btn">Delete</button>
         <button class="taken-btn">
           ${m.takenToday ? "Undo" : "Mark Taken"}
@@ -41,17 +61,27 @@ async function loadMedications(page = 1) {
     `;
 
     row.querySelector(".delete-btn").onclick = () => deleteMed(m._id);
-    row.querySelector(".taken-btn").onclick = () =>
-      markTaken(m._id, m.takenToday);
+    row.querySelector(".taken-btn").onclick = () => markTaken(m._id, m.takenToday);
+    row.querySelector(".edit-btn").onclick = () => startEdit(m);
 
     list.appendChild(row);
   });
 
-  renderPagination(page, totalPages);
+  renderPagination(result.page || 1, result.totalPages || 1);
 }
 
+
+
+
+
+
+/* PAGINATION UI */
+
 function renderPagination(page, totalPages) {
+
   const container = document.getElementById("pagination");
+  if (!container) return;
+
   container.innerHTML = "";
 
   if (page > 1) {
@@ -63,6 +93,7 @@ function renderPagination(page, totalPages) {
 
   const label = document.createElement("span");
   label.textContent = ` Page ${page} / ${totalPages} `;
+  label.style.margin = "0 10px";
   container.appendChild(label);
 
   if (page < totalPages) {
@@ -73,25 +104,88 @@ function renderPagination(page, totalPages) {
   }
 }
 
-async function addMedication() {
-  await fetch(API, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name: document.getElementById("name").value,
-      dosage: document.getElementById("dosage").value,
-      schedule: document.getElementById("schedule").value,
-      notes: document.getElementById("notes").value,
-    }),
-  });
+/* ADD OR UPDATE */
 
-  loadMedications(currentPage);
+async function addMedication() {
+
+  const data = {
+    name: document.getElementById("name").value,
+    dosage: document.getElementById("dosage").value,
+    schedule: document.getElementById("schedule").value,
+    notes: document.getElementById("notes").value
+  };
+
+  if (!data.name) {
+    alert("Medication name is required");
+    return;
+  }
+
+  if (editingId) {
+
+    await fetch(`${API}/${editingId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    editingId = null;
+    addBtn.textContent = "Add";
+    cancelBtn.style.display = "none";
+    formTitle.textContent = "Add Medication";
+
+  } else {
+
+    await fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+  }
+
+  clearForm();
+  await loadMedications(currentPage);
 }
+
+/* START EDIT */
+
+function startEdit(med) {
+
+  editingId = med._id;
+
+  document.getElementById("name").value = med.name;
+  document.getElementById("dosage").value = med.dosage;
+  document.getElementById("schedule").value = med.schedule;
+  document.getElementById("notes").value = med.notes || "";
+
+  addBtn.textContent = "Update";
+  cancelBtn.style.display = "inline-block";
+  formTitle.textContent = "Edit Medication";
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* CANCEL EDIT */
+
+cancelBtn.onclick = () => {
+  editingId = null;
+  clearForm();
+  addBtn.textContent = "Add";
+  cancelBtn.style.display = "none";
+  formTitle.textContent = "Add Medication";
+};
+
+/* DELETE */
 
 async function deleteMed(id) {
+
+  if (!confirm("Delete this medication?")) return;
+
   await fetch(`${API}/${id}`, { method: "DELETE" });
-  loadMedications(currentPage);
+
+  await loadMedications(currentPage);
 }
+
+/* TOGGLE TAKEN */
 
 async function markTaken(id, currentStatus) {
   await fetch(`${API}/${id}/taken`, {
@@ -102,9 +196,20 @@ async function markTaken(id, currentStatus) {
     }),
   });
 
-  loadMedications(currentPage);
+  await loadMedications(currentPage);
 }
+
+/* CLEAR FORM */
+
+function clearForm() {
+  document.getElementById("name").value = "";
+  document.getElementById("dosage").value = "";
+  document.getElementById("schedule").value = "";
+  document.getElementById("notes").value = "";
+}
+
+/* INIT*/
 
 addBtn.addEventListener("click", addMedication);
 
-loadMedications(1);
+loadMedications();

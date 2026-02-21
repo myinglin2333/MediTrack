@@ -73,12 +73,56 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-/* PATCH toggle taken */
-router.patch("/:id/taken", async (req, res) => {
+/* PATCH update medication info */
+router.patch("/:id", async (req, res) => {
   try {
     const db = await getDb();
 
-    const newStatus = req.body.takenToday === true;
+    const updateData = {
+      name: req.body.name,
+      dosage: req.body.dosage,
+      schedule: req.body.schedule,
+      notes: req.body.notes || ""
+    };
+
+    await db.collection("medications").updateOne(
+      { _id: new ObjectId(req.params.id) },
+      { $set: updateData }
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to update medication" });
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  try {
+    const db = await getDb();
+
+    await db.collection("medications").updateOne(
+      { _id: new ObjectId(req.params.id) },
+      {
+        $set: {
+          name: req.body.name,
+          dosage: req.body.dosage,
+          schedule: req.body.schedule,
+          notes: req.body.notes || ""
+        }
+      }
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update medication" });
+  }
+});
+
+router.patch("/:id/taken", async (req, res) => {
+  try {
+    const db = await getDb();
+    const newStatus = Boolean(req.body.takenToday);
 
     await db.collection("medications").updateOne(
       { _id: new ObjectId(req.params.id) },
