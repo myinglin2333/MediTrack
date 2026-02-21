@@ -1,5 +1,4 @@
-const API = "http://localhost:3000/api/medications";
-
+const API = "/api/medications";
 const list = document.getElementById("list");
 const addBtn = document.getElementById("addBtn");
 const cancelBtn = document.getElementById("cancelBtn");

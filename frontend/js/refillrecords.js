@@ -1,5 +1,4 @@
-const API = "http://localhost:3000/api/refillrecords";
-
+const API = "/api/refillrecords";
 const list = document.getElementById("list");
 const saveBtn = document.getElementById("saveBtn");
 const cancelBtn = document.getElementById("cancelBtn");
