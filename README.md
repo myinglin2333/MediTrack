@@ -13,9 +13,9 @@ diyora.h@northeastern.edu
 - Northeastern University
 
 ### Links
-- [MediTrack] (TBD)
+- [MediTrack](https://meditrack-80q6.onrender.com/)
 - [Design Document](/docs/design-document.pdf)
-- [Video Demonstration] (TBD)
+- [Video Demonstration](https://youtu.be/kZP0StNv1qU?feature=shared)
 - [Google Slides](/docs/slides.pdf)
 
 ## Project Objective
