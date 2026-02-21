@@ -15,7 +15,8 @@ router.get("/", async (req, res) => {
 
     const total = await db.collection("refills").countDocuments();
 
-    const refills = await db.collection("refills")
+    const refills = await db
+      .collection("refills")
       .find()
       .sort({ _id: -1 })
       .skip(skip)
@@ -25,9 +26,8 @@ router.get("/", async (req, res) => {
     res.json({
       data: refills,
       page,
-      totalPages: Math.ceil(total / limit)
+      totalPages: Math.ceil(total / limit),
     });
-
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch refill records" });
   }
@@ -43,16 +43,15 @@ router.post("/", async (req, res) => {
       refillDate: req.body.refillDate,
       quantity: req.body.quantity,
       pharmacy: req.body.pharmacy,
-      notes: req.body.notes || ""
+      notes: req.body.notes || "",
     };
 
     const result = await db.collection("refills").insertOne(newRefill);
 
     res.json({
       success: true,
-      id: result.insertedId
+      id: result.insertedId,
     });
-
   } catch (err) {
     res.status(500).json({ error: "Failed to add refill record" });
   }
@@ -68,16 +67,14 @@ router.patch("/:id", async (req, res) => {
       refillDate: req.body.refillDate,
       quantity: req.body.quantity,
       pharmacy: req.body.pharmacy,
-      notes: req.body.notes || ""
+      notes: req.body.notes || "",
     };
 
-    await db.collection("refills").updateOne(
-      { _id: new ObjectId(req.params.id) },
-      { $set: updateData }
-    );
+    await db
+      .collection("refills")
+      .updateOne({ _id: new ObjectId(req.params.id) }, { $set: updateData });
 
     res.json({ success: true });
-
   } catch (err) {
     res.status(500).json({ error: "Failed to update refill record" });
   }
@@ -89,11 +86,10 @@ router.delete("/:id", async (req, res) => {
     const db = await getDb();
 
     await db.collection("refills").deleteOne({
-      _id: new ObjectId(req.params.id)
+      _id: new ObjectId(req.params.id),
     });
 
     res.json({ success: true });
-
   } catch (err) {
     res.status(500).json({ error: "Failed to delete refill record" });
   }

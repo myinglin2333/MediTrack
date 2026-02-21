@@ -1,108 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>MediTrack - Home</title>
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/home.css">
+  <meta charset="UTF-8" />
+  <title>MediTrack - Home</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/home.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
-        rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+    rel="stylesheet" />
 </head>
 
 <body>
-    <!-- Nav Bar -->
-    <div class="topnav">
-        <div class="nav-title">
-            <span class="pill-icon"></span>
-            MediTrack
-        </div>
-
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="medications.html">Manage Medications</a>
-            <a href="refillrecords.html">Refill Records</a>
-        </div>
+  <!-- Nav Bar -->
+  <nav class="topnav">
+    <div class="nav-title">
+      <span class="pill-icon"></span>
+      MediTrack
     </div>
 
-    <div class="page">
-
-        <!-- HERO -->
-        <section class="hero">
-            <div class="hero-text">
-                <h1>MediTrack</h1>
-                <p>Stay safe. Stay organized. Never miss a dose.</p>
-            </div>
-        </section>
-
-        <!-- Dashboard -->
-        <section class="home-actions">
-            <a href="medications.html" class="action-card">
-                <h3>💊 Manage Medications</h3>
-                <p>Add, track, and mark medications as taken.</p>
-            </a>
-
-            <a href="refillrecords.html" class="action-card">
-                <h3>📦 Refill Records</h3>
-                <p>Log and review your prescription refills.</p>
-            </a>
-        </section>
-
-        <!-- Info -->
-        <section class="card">
-            <h2>About MediTrack</h2>
-            <p>MediTrack is a simple medication tracking app for families and patients.</p>
-            <p>
-                Here, you can manage your medications, track daily intake, and keep
-                refill records all in one place.
-            </p>
-        </section>
-
-        <section class="card">
-            <h2>How to Use</h2>
-            <ol>
-                <li>
-                    <strong>Add your medications</strong> - Click <em><strong>Manage Medications</strong></em>
-                    to register a medication with its dosage and schedule.
-                </li>
-                <li>
-                    <strong>Mark medications as taken</strong> - On the <em><strong>Manage Medications</strong></em>
-                    page, click <em>Mark Taken</em> after you take a dose.
-                </li>
-                <li>
-                    <strong>Edit or delete medications</strong> - Use the <em>Edit</em> and <em>Delete</em>
-                    buttons in the medications table to keep your list current.
-                </li>
-                <li>
-                    <strong>Log refills</strong> - Click <em><strong>Refill Records</strong></em> to log a new
-                    prescription refill with date, quantity, and pharmacy info.
-                </li>
-                <li>
-                    <strong>Review refill history</strong> - Track your past refills in the history table to ensure you
-                    never run out.
-                </li>
-            </ol>
-        </section>
-
-        <footer>
-            <p>MediTrack &copy; 2026 — Helly Niteshbhai Diyora &amp; Lili Mei Ye</p>
-        </footer>
-
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="medications.html">Manage Medications</a>
+      <a href="refillrecords.html">Refill Records</a>
     </div>
+  </nav>
 
-    <!-- ACTIVE NAV -->
-    <script>
-        document.querySelectorAll(".nav-link").forEach(link => {
-            if (link.getAttribute("href") === "index.html") {
-                link.classList.add("active");
-            }
-        });
-    </script>
+  <div class="page">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>MediTrack</h1>
+        <p>Stay safe. Stay organized. Never miss a dose.</p>
+      </div>
+    </section>
 
+    <!-- Dashboard -->
+    <section class="home-actions">
+      <a href="medications.html" class="action-card">
+        <h3>💊 Manage Medications</h3>
+        <p>Add, track, and mark medications as taken.</p>
+      </a>
+
+      <a href="refillrecords.html" class="action-card">
+        <h3>📦 Refill Records</h3>
+        <p>Log and review your prescription refills.</p>
+      </a>
+    </section>
+
+    <!-- Info -->
+    <section class="card">
+      <h2>About MediTrack</h2>
+      <p>
+        MediTrack is a simple medication tracking app for families and
+        patients.
+      </p>
+      <p>
+        Here, you can manage your medications, track daily intake, and keep
+        refill records all in one place.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>How to Use</h2>
+      <ol>
+        <li>
+          <strong>Add your medications</strong> - Click
+          <em><strong>Manage Medications</strong></em>
+          to register a medication with its dosage and schedule.
+        </li>
+        <li>
+          <strong>Mark medications as taken</strong> - On the
+          <em><strong>Manage Medications</strong></em> page, click
+          <em>Mark Taken</em> after you take a dose.
+        </li>
+        <li>
+          <strong>Edit or delete medications</strong> - Use the
+          <em>Edit</em> and <em>Delete</em>
+          buttons in the medications table to keep your list current.
+        </li>
+        <li>
+          <strong>Log refills</strong> - Go to
+          <em><strong>Refill Records</strong></em>
+          to add a new refill with the medication name, date, quantity, and
+          pharmacy.
+        </li>
+        <li>
+          <strong>Edit or delete refills</strong> - Use the <em>Edit</em> and
+          <em>Delete</em>
+          buttons in the refill history table to update or remove records.
+        </li>
+        <li>
+          <strong>Review refill history</strong> - Browse all past refills in
+          the history table to keep track of your prescriptions.
+        </li>
+      </ol>
+    </section>
+
+    <footer>
+      <p>MediTrack &copy; 2026 — Helly Niteshbhai Diyora &amp; Lili Mei Ye</p>
+    </footer>
+  </div>
+
+  <!-- ACTIVE NAV -->
+  <script>
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      if (link.getAttribute("href") === "index.html") {
+        link.classList.add("active");
+      }
+    });
+  </script>
 </body>
 
 </html>

@@ -188,13 +188,12 @@ async function deleteMed(id) {
 /* TOGGLE TAKEN */
 
 async function markTaken(id, currentStatus) {
-
   await fetch(`${API}/${id}/taken`, {
     method: "PATCH",
-    headers: {"Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      takenToday: !currentStatus
-    })
+      takenToday: !currentStatus,
+    }),
   });
 
   await loadMedications(currentPage);
