@@ -7,6 +7,17 @@ const formTitle = document.getElementById("formTitle");
 let currentPage = 1;
 let editingId = null;
 
+// Normalize any date (ISO or YYYY-MM-DD) to YYYY-MM-DD
+function toDateString(dateVal) {
+  if (!dateVal) return "";
+  const d = new Date(dateVal);
+  if (isNaN(d)) return dateVal;
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 async function loadRefills(page = 1) {
   currentPage = page;
 
@@ -22,10 +33,7 @@ async function loadRefills(page = 1) {
     refills.forEach((r) => {
       const row = document.createElement("tr");
 
-      const displayDate =
-        r.refillDate && r.refillDate.includes("T")
-          ? new Date(r.refillDate).toLocaleDateString()
-          : r.refillDate;
+      const displayDate = toDateString(r.refillDate);
 
       row.innerHTML = `
         <td><strong>${r.medicationName}</strong></td>
@@ -110,7 +118,7 @@ async function saveRefill() {
 function startEdit(refill) {
   editingId = refill._id;
   document.getElementById("name").value = refill.name;
-  document.getElementById("refillDate").value = refill.refillDate;
+  document.getElementById("refillDate").value = toDateString(refill.refillDate);
   document.getElementById("quantity").value = refill.quantity;
   document.getElementById("pharmacy").value = refill.pharmacy;
   document.getElementById("notes").value = refill.notes || "";
