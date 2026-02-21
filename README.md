@@ -60,15 +60,15 @@ This project demonstrates a full-stack application built using:
 
 ### Homepage
 
-![Homepage](screenshots/homepage.png)
+![Homepage](screenshots/Homepage.png)
 
 ### Medications Page
 
-![Medications](screenshots/medications.png)
+![Medications](screenshots/Medication-page.png)
 
 ### Refill Records Page
 
-![Refill Records](screenshots/refillrecords.png)
+![Refill Records](screenshots/Refill-page.png)
 
 ## Project Structure
 
