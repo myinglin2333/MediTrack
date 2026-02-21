@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>MediTrack - Home</title>
@@ -8,8 +9,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <!-- Nav Bar -->
     <div class="topnav">
@@ -19,9 +23,9 @@
         </div>
 
         <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="medications.html">Manage Medications</a>
-        <a href="refillsrecords.html">Refill Records</a>
+            <a href="index.html">Home</a>
+            <a href="medications.html">Manage Medications</a>
+            <a href="refillrecords.html">Refill Records</a>
         </div>
     </div>
 
@@ -38,14 +42,14 @@
         <!-- Dashboard -->
         <section class="home-actions">
             <a href="medications.html" class="action-card">
-            <h3>💊 Manage Medications</h3>
-            <p>Add, track, and mark medications as taken.</p>
-        </a>
+                <h3>💊 Manage Medications</h3>
+                <p>Add, track, and mark medications as taken.</p>
+            </a>
 
-        <a href="refillsrecords.html" class="action-card">
-            <h3>📦 Refill Records</h3>
-            <p>Log and review your prescription refills.</p>
-        </a>
+            <a href="refillrecords.html" class="action-card">
+                <h3>📦 Refill Records</h3>
+                <p>Log and review your prescription refills.</p>
+            </a>
         </section>
 
         <!-- Info -->
@@ -74,28 +78,31 @@
                     buttons in the medications table to keep your list current.
                 </li>
                 <li>
-                    <strong>Log refills</strong> - 
+                    <strong>Log refills</strong> - Click <em><strong>Refill Records</strong></em> to log a new
+                    prescription refill with date, quantity, and pharmacy info.
                 </li>
                 <li>
-                    <strong>Review refill history</strong> - 
+                    <strong>Review refill history</strong> - Track your past refills in the history table to ensure you
+                    never run out.
                 </li>
             </ol>
         </section>
 
-    <footer>
-        <p>MediTrack &copy; 2026 — Helly Niteshbhai Diyora &amp; Lili Mei Ye</p>
-    </footer>
+        <footer>
+            <p>MediTrack &copy; 2026 — Helly Niteshbhai Diyora &amp; Lili Mei Ye</p>
+        </footer>
 
     </div>
 
     <!-- ACTIVE NAV -->
     <script>
-    document.querySelectorAll(".nav-link").forEach(link => {
-        if (link.getAttribute("href") === "index.html") {
-        link.classList.add("active");
-        }
-    });
-    </script>  
+        document.querySelectorAll(".nav-link").forEach(link => {
+            if (link.getAttribute("href") === "index.html") {
+                link.classList.add("active");
+            }
+        });
+    </script>
 
 </body>
+
 </html>

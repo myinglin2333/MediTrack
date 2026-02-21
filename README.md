@@ -44,9 +44,16 @@ This project demonstrates a full-stack application built using:
 - View taken date
 
 ### Refill Tracking
+<<<<<<< HEAD
 -  Add refill entries with medication name, quantity, pharmacy, and date
 - View refill history in table format
 -
+=======
+- Add Refill record with name, refill date, quantity and pharmacy
+- Display Record page.
+- Edit records if there is any changes.
+- Delete records no longer needed
+>>>>>>> refill-records
 
 ## Screenshots
 
