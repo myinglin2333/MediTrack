@@ -29,7 +29,7 @@ async function loadRefills(page = 1) {
           : r.refillDate;
 
       row.innerHTML = `
-        <td><strong>${r.name}</strong></td>
+        <td><strong>${r.medicationName}</strong></td>
         <td>${displayDate}</td>
         <td>${r.quantity}</td>
         <td>${r.pharmacy}</td>

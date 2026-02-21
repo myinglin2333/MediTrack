@@ -3,7 +3,7 @@
 ## Overview
 ### Author
 **Name:** Helly Niteshbhai Diyora\
-**Email:** 
+**Email:** diyora.h@northeastern.edu
 
 **Name:** Lili Mei Ye\
 **Email:** meiye.l@northeastern.edu
@@ -15,9 +15,9 @@
 
 ### Links
 - [MediTrack] (TBD)
-- [Design Document] (TBD)
+- [Design Document](/docs/design-document.pdf)
 - [Video Demonstration] (TBD)
-- [Google Slides] (TBD)
+- [Google Slides](/docs/slides.pdf)
 
 ## Project Objective
 MediTrack is a simple web application that helps individuals and families manage medications and prescription refills.
@@ -44,16 +44,10 @@ This project demonstrates a full-stack application built using:
 - View taken date
 
 ### Refill Tracking
-<<<<<<< HEAD
--  Add refill entries with medication name, quantity, pharmacy, and date
-- View refill history in table format
--
-=======
 - Add Refill record with name, refill date, quantity and pharmacy
-- Display Record page.
+- Display Record page
 - Edit records if there is any changes.
 - Delete records no longer needed
->>>>>>> refill-records
 
 ## Screenshots
 
