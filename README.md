@@ -2,11 +2,10 @@
 
 ## Overview
 ### Author
-**Name:** Helly Niteshbhai Diyora\
-**Email:** diyora.h@northeastern.edu
+**Helly Niteshbhai Diyora**
+diyora.h@northeastern.edu
 
-**Name:** Lili Mei Ye\
-**Email:** meiye.l@northeastern.edu
+**Lili Mei Ye** meiye.l@northeastern.edu
 
 ### Class Information
 - [CS5610 Web Development](https://johnguerra.co/classes/webDevelopment_online_spring_2026/index.html)
@@ -52,18 +51,13 @@ This project demonstrates a full-stack application built using:
 ## Screenshots
 
 ### Homepage
-
+![Home Page](screenshots/homepage.png)
 
 ### Medications page
-
+![Home Page](screenshots/Medication-page.png)
 
 ### Refill Records page
-
-
-
-## Project Structure
-
-
+![Home Page](screenshots/Refill-page.png)
 
 ## How to Run the Project
 
