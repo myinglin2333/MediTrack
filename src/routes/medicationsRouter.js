@@ -33,6 +33,11 @@ router.get("/", async (req, res) => {
   }
 });
 
+// [Validation] No server-side input validation is performed before writing to
+// the database. req.body.name could be an empty string, null, or arbitrarily
+// long input. Client-side validation alone is insufficient since it can be
+// bypassed by sending a direct HTTP request. At minimum, required fields
+// should be checked and rejected with a 400 status if missing or invalid.
 /* POST add medication */
 router.post("/", async (req, res) => {
   try {
