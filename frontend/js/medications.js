@@ -32,6 +32,12 @@ async function loadMedications(page = 1) {
 
     const row = document.createElement("tr");
 
+    // [Security] XSS Vulnerability: User-supplied data from the database is
+    // interpolated directly into innerHTML without sanitization. If a malicious
+    // value such as <script>alert('XSS')</script> is stored in m.name, m.dosage,
+    // m.schedule, or m.notes, it will be executed as JavaScript when the DOM is
+    // rendered. Recommendation: use textContent to set user-controlled fields,
+    // or sanitize values before inserting them into innerHTML.
     row.innerHTML = `
       <td><strong>${m.name}</strong></td>
       <td>${m.dosage}</td>
